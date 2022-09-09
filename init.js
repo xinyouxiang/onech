@@ -5,30 +5,32 @@ var accountsPassword = "test123456";
 // 交易流水
 var txIndex = 0;
 
-var addresscompress="0xBE0cb86Dc4213d4bEbd39a68880227eC1A5d1da6";
-var onechancecoin="0xE2dc057eE7cc42B74Cc74b422276411dE83EB726";
-var onechance="0xd33D40e0c95d2224Fb623671d8B1008641e498A8";
+var addresscompress=0xBE0cb86Dc4213d4bEbd39a68880227eC1A5d1da6;
+var onechancecoin=0xE2dc057eE7cc42B74Cc74b422276411dE83EB726;
+var onechance=0xd33D40e0c95d2224Fb623671d8B1008641e498A8;
 
 // 初始化web3插件
 $(function() {
-   // if (typeof web3 !== 'undefined') {
-   //     web3 = new Web3(web3.currentProvider);
-	//	console.log(web3.eth.accounts);
-    //} else {
-       // web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
-		//console.log(web3.eth.accounts);
-    //}
-	 if (window.ethereum) {
-	 web3 = new Web3(window.ethereum);
-	 console.log(web3.eth.accounts);
-	 }
-	if (typeof window.ethereum !== 'undefined') {
-       // let addr= ethereum.request({ method: 'eth_requestAccounts' });//授权连接钱包
-        console.log('用户钱包地址:',addr[0]);
-    }else{
-        console.log('未安装钱包插件！');
-    }
+	 if (typeof window.ethereum !== 'undefined'|| (typeof window.web3 !== 'undefined')) {
+          // 检测到Web3浏览器用户。 现在可以使用提供程序了。
+          const provider = window['ethereum'] || window.web3.currentProvider;
+          // 实例化web3
+          web3 = new Web3(provider);
+          window.web3 = web3;//挂载在window上，方便直接获取
+          //ethereum.enable() 方法请求用户授权应用访问MetaMask中的用户账号信息。
+          window.ethereum.enable().then((res) => {
+            console.log("当前钱包地址：" + res)
+          })
+        }else {
+          alert("请安装MetaMask钱包")
+        }
 
+	
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
+    }
     // 初始化账户信息
     initAccountSelect();
 });
