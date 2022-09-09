@@ -5,9 +5,9 @@ var accountsPassword = "test123456";
 // 交易流水
 var txIndex = 0;
 
-var addresscompress=0xBE0cb86Dc4213d4bEbd39a68880227eC1A5d1da6;
-var onechancecoin=0xE2dc057eE7cc42B74Cc74b422276411dE83EB726;
-var onechance=0xd33D40e0c95d2224Fb623671d8B1008641e498A8;
+var addresscompress="0xBE0cb86Dc4213d4bEbd39a68880227eC1A5d1da6";
+var onechancecoin="0xE2dc057eE7cc42B74Cc74b422276411dE83EB726";
+var onechance="0xd33D40e0c95d2224Fb623671d8B1008641e498A8";
 
 // 初始化web3插件
 $(function() {
@@ -15,9 +15,21 @@ $(function() {
    //     web3 = new Web3(web3.currentProvider);
 	//	console.log(web3.eth.accounts);
     //} else {
-        web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
-		console.log(web3.eth.accounts);
+       // web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
+		//console.log(web3.eth.accounts);
     //}
+	 if (window.ethereum) {
+	 web3 = new Web3(window.ethereum);
+	 }
+	if (typeof window.ethereum !== 'undefined') {
+        let addr=await ethereum.request({ method: 'eth_requestAccounts' });//授权连接钱包
+        console.log('用户钱包地址:',addr[0]);
+    }else{
+        console.log('未安装钱包插件！');
+    }
+————————————————
+版权声明：本文为CSDN博主「m0_67401228」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_67401228/article/details/123377465
     // 初始化账户信息
     initAccountSelect();
 });
