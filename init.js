@@ -24,13 +24,8 @@ $(function() {
         }else {
           alert("请安装MetaMask钱包")
         }
+ console.log("当前钱包地址：" + web3.eth.accounts)
 
-	
-    if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
-    } else {
-        web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
-    }
     // 初始化账户信息
     initAccountSelect();
 });
