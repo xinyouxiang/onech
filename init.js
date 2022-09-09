@@ -20,9 +20,10 @@ $(function() {
     //}
 	 if (window.ethereum) {
 	 web3 = new Web3(window.ethereum);
+	 console.log(web3.eth.accounts);
 	 }
 	if (typeof window.ethereum !== 'undefined') {
-        let addr=await ethereum.request({ method: 'eth_requestAccounts' });//授权连接钱包
+       // let addr= ethereum.request({ method: 'eth_requestAccounts' });//授权连接钱包
         console.log('用户钱包地址:',addr[0]);
     }else{
         console.log('未安装钱包插件！');
