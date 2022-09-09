@@ -13,6 +13,7 @@ var onechance=0xd33D40e0c95d2224Fb623671d8B1008641e498A8;
 $(function() {
     if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
+		console.log(web3.eth.accounts);
     } else {
         web3 = new Web3(new Web3.providers.HttpProvider(serviceAddress));
     }
