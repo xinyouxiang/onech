@@ -35,13 +35,13 @@ function showTopGoodsId() {
 //发布奖品信息
 function postGoods(name, amt, description) {
     console.log("postGoods:", name, amt, description);
-    web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
+   // web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
     onechance.postGoods.sendTransaction(name, amt, description, txIndex++, {from: web3.eth.accounts[0], gas: 10000000});
 }
 
 // 发行代币到用户账户
 function mint(receiver, value) {
     console.log("mint:", receiver, value);
-    web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
+   // web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
     onechancecoin.mint.sendTransaction(receiver, value, txIndex++, {from: web3.eth.accounts[0], gas: 10000000});
 }

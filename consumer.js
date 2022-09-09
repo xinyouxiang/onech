@@ -83,7 +83,7 @@ function buyChance(addr, goodsId, quantity, plaintext) {
     }
     buyRecordMap[goodsId].push(tx);
 
-    web3.personal.unlockAccount(addr, accountsPassword);
+   // web3.personal.unlockAccount(addr, accountsPassword);
     onechance.buyChance.sendTransaction(goodsId, quantity, ciphertext, txIndex++, {from: addr, gas: 10000000});
 }
 
@@ -99,7 +99,7 @@ function submitPlaintext(goodsId) {
     console.log("submitPlaintext:", goodsId);
     var buyRecordArr = buyRecordMap[goodsId];
     $.each(buyRecordArr, function(index, buyRecord) {
-        web3.personal.unlockAccount(buyRecord.addr, accountsPassword);
+        //web3.personal.unlockAccount(buyRecord.addr, accountsPassword);
         onechance.submitPlaintext.sendTransaction(buyRecord.goodsId, buyRecord.beginUserId, buyRecord.plaintext, txIndex++, {from: buyRecord.addr, gas: 10000000});
     });
     // 测试环境对稳定性不作要求，实际情况下 buyRecordMap 记录要等收到随机数提交成功通知后才可以删除
@@ -123,7 +123,7 @@ function queryConsumers(goodsId) {
 
 function transfer(sender, receiver, value) {
     console.log("transfer:", sender, receiver, value);
-    web3.personal.unlockAccount(sender, accountsPassword);
+    //web3.personal.unlockAccount(sender, accountsPassword);
     onechancecoin.transfer.sendTransaction(receiver, value, {from: sender, gas: 10000000});
 }
 

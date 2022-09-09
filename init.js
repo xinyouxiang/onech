@@ -87,7 +87,7 @@ function init() {
 // 部署AddressCompress合约
 function deployAddressCompress(callback) {
     console.log("部署AddressCompress合约");
-    web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
+    //web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
     var addresscompressContract = web3.eth.contract([{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"uidOf","outputs":[{"name":"","type":"uint32"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint32"}],"name":"addrOf","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"topUid","outputs":[{"name":"","type":"uint32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_addr","type":"address"}],"name":"regist","outputs":[{"name":"uid","type":"uint32"}],"payable":false,"type":"function"}]);
     addresscompress = addresscompressContract.new(
 	{
@@ -168,6 +168,6 @@ function deployOneChance(callback) {
 // 初始化两个合约的互相引用地址
 function initContractAddr() {
     console.log("初始化合约地址");
-    web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
+    //web3.personal.unlockAccount(web3.eth.accounts[0], accountsPassword);
     onechancecoin.initOneChance.sendTransaction(onechance.address, {from: web3.eth.accounts[0], gas: 10000000});
 }
